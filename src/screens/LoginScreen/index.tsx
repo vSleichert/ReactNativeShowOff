@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { ActivityIndicator, Alert, KeyboardAvoidingView } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import { loginUser } from '../../axios/login'
 import { Background, ButtonText, Container, LoginButton, LoginInput, Title } from './components/Login.styled'
 
@@ -17,12 +18,11 @@ const LoginScreen = () => {
 
       return
     }
-    
+
     setFetching(true)
 
     loginUser(username, password).then((res) => {
-      console.log('resp', res)
-      //saveToken and some DATA
+      AsyncStorage.setItem('token', res.data.token)
       navigation.navigate('Home')
     }).catch((err) => {
       console.log('error', err)
@@ -42,7 +42,8 @@ const LoginScreen = () => {
             {fetching ? <ActivityIndicator animating={true} color='white'/> :
               <ButtonText>
                 Login
-              </ButtonText>}
+              </ButtonText>
+            }
           </LoginButton>
         </Container>
       </KeyboardAvoidingView>
