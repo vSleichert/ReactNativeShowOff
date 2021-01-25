@@ -1,9 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
-import { Button } from 'react-native'
+import { observer } from "mobx-react-lite"
+import React, { useContext } from 'react'
+import { Button, Text } from 'react-native'
 import { getProjectsList } from '../../axios/projects'
+import { UserStoreContext } from '../../mobx/user'
 
-const HomeScreen = () => {
+const HomeScreen = observer(() => {
+  const userStore = useContext(UserStoreContext)
   const navigation = useNavigation()
 
   const getData = () => getProjectsList().then((res) => {
@@ -13,11 +16,14 @@ const HomeScreen = () => {
   })
 
   return (
-    <Button
-      title="Go to Other"
-      onPress={getData}
-    />
+    <>
+      <Text>Logged as: {userStore.loggedUsername}</Text>
+      <Button
+        title="Go to Other"
+        onPress={getData}
+      />
+    </>
   )
-}
+})
 
 export default HomeScreen
