@@ -37,20 +37,20 @@ const LoginScreen = observer(() => {
 
   return (
     <Background>
-      <KeyboardAvoidingView>
         <Container>
           <Title>MEMSOURCE</Title>
-          <LoginInput value={username} onChangeText={setUsername} placeholder='username' />
-          <LoginInput value={password} onChangeText={setPassword} secureTextEntry={true} placeholder='password' />
-          <LoginButton onPress={login}>
-            {fetching ? <ActivityIndicator animating={true} color='white'/> :
-              <ButtonText>
-                Login
-              </ButtonText>
-            }
-          </LoginButton>
+          <KeyboardAvoidingView>
+            <LoginInput value={username} onChangeText={setUsername} placeholder='username' />
+            <LoginInput value={password} onChangeText={setPassword} secureTextEntry={true} placeholder='password' />
+            <LoginButton onPress={login}>
+              {fetching ? <ActivityIndicator animating={true} color='white'/> :
+                <ButtonText>
+                  Login
+                </ButtonText>
+              }
+            </LoginButton>
+          </KeyboardAvoidingView>
         </Container>
-      </KeyboardAvoidingView>
     </Background>
   )
 })
