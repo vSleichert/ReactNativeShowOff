@@ -52,3 +52,8 @@ export const LoginInput = styled.TextInput`
   height: 46px;
   margin: 10px 10px 0px 10px;
 `
+
+export const ErrorMessage = styled.Text`
+  text-align: center;
+  color: red;
+`

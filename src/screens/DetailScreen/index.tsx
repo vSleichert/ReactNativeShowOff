@@ -1,12 +1,11 @@
-import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, Text } from 'react-native'
 import { getProject, Project } from '../../axios/projects';
+import { Container, Item, Title } from './components/Detail.styled';
 
-const DetailScreen = ({route}) => {
+const DetailScreen = ({route}: {route: any}) => {
   const { uid } = route.params;
 
-  const navigation = useNavigation()
   const [project, setProject] = useState<Project | null>(null)
 
   useEffect(() => {
@@ -20,9 +19,24 @@ const DetailScreen = ({route}) => {
   }
 
   return (
-    <>
-      <Text>id: {project.uid}</Text>
-    </>
+    <Container>
+      <Item>
+        <Title>Name: </Title>
+        <Text>{project.name}</Text>
+      </Item>
+      <Item>
+        <Title>Source language: </Title>
+        <Text>{project.sourceLang}</Text>
+      </Item>
+      <Item>
+        <Title>Target Languages: </Title>
+        <Text>{project.targetLangs.toString()}</Text>
+      </Item>
+      <Item>
+        <Title>Status: </Title>
+        <Text>{project.status}</Text>
+      </Item>
+    </Container>
   )
 }
 

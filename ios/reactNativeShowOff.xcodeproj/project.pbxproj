@@ -194,7 +194,6 @@
 				99975D766433B7E37252C1FD /* Pods-reactNativeShowOff-tvOSTests.debug.xcconfig */,
 				8DC93C24F054A625ED859859 /* Pods-reactNativeShowOff-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
