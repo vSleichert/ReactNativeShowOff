@@ -38,11 +38,11 @@ const LoginScreen = observer(() => {
   }
 
   return (
-    <Background>
+    <Background testID='app-root' accessibilityLabel='app-root'>
         <Container>
           <Title>MEMSOURCE</Title>
           <KeyboardAvoidingView>
-            <LoginInput value={username} onChangeText={setUsername} placeholder='username' />
+            <LoginInput value={username} onChangeText={setUsername} placeholder='username' testID='username' accessibilityLabel='username'/>
             <LoginInput value={password} onChangeText={setPassword} secureTextEntry={true} placeholder='password' />
             { error && <ErrorMessage>{error}</ErrorMessage> }
             <LoginButton onPress={login}>
