@@ -1,28 +1,38 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { View, Text } from 'react-native'
-import { Project } from '..'
-import { Column, Container, Title } from './ProjectListItem.styled'
+import { Project } from '../../../axios/projects'
+import { Column, Container, Item, Title } from './ProjectListItem.styled'
 
-const ProjectListItem = ({project}: {project: Project}) => {
+const ITEM_TEXT_LIMIT = 13
+
+const longTextCorrection = (text: string) => {
+  if (text.length > ITEM_TEXT_LIMIT) {
+    return `${text.slice(0, ITEM_TEXT_LIMIT)}...`
+  }
+
+  return text
+}
+
+const ProjectListItem = ({ project }: { project: Project }) => {
   const navigation = useNavigation()
+
   return (
-    <Container onPress={() => navigation.navigate('Detail', {id: project.id})}>
+    <Container onPress={() => navigation.navigate('Detail', { uid: project.uid })}>
       <Column>
         <Title>Name</Title>
-        <Text>{project.name}</Text>
+        <Item>{longTextCorrection(project.name)}</Item>
       </Column>
       <Column>
         <Title>Source</Title>
-        <Text>{project.sourceLang}</Text>
+        <Item>{longTextCorrection(project.sourceLang)}</Item>
       </Column>
       <Column>
         <Title>Target</Title>
-        <Text>{project.targetLangs.toString()}</Text>
+        <Item>{longTextCorrection(project.targetLangs.toString())}</Item>
       </Column>
       <Column>
         <Title>Status</Title>
-        <Text>{project.status}</Text>
+        <Item>{longTextCorrection(project.status)}</Item>
       </Column>
     </Container>
   )

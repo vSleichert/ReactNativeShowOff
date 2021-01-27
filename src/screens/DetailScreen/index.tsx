@@ -1,20 +1,27 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
-import { Button, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, Text } from 'react-native'
+import { getProject, Project } from '../../axios/projects';
 
 const DetailScreen = ({route}) => {
-  const { id } = route.params;
+  const { uid } = route.params;
+
   const navigation = useNavigation()
+  const [project, setProject] = useState<Project | null>(null)
+
+  useEffect(() => {
+    getProject(uid).then((res) => {
+      setProject(res.data)
+    })
+  }, [])
+
+  if(!project) {
+    return <ActivityIndicator animating={true} color='black'/>
+  }
 
   return (
     <>
-      <Text>id: {id}</Text>
-      <Button
-        title="Go to Home"
-        onPress={() =>
-          navigation.navigate('Home')
-        }
-      />
+      <Text>id: {project.uid}</Text>
     </>
   )
 }

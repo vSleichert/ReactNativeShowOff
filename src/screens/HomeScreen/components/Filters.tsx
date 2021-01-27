@@ -21,15 +21,10 @@ const Filters = ({ value, setValue }: { value: number, setValue: (val: number) =
         maximumTrackTintColor="#FFFFFF"
       />
       <Dropdown
-          items={filterArray.map((value) => ({label: value === 0 ? 'any due time' : value.toString(), value}))}
-          defaultValue={value}
-          multiple={false}
-          zIndex={999999000}
-          containerStyle={{height: 40}}
-          itemStyle={{
-              justifyContent: 'flex-start'
-          }}
-          onChangeItem={item => setValue(item.value)}
+        label='Due time'
+        data={filterArray.map((value) => ({label: value === 0 ? 'any due time' : value.toString(), value: value}))}
+        value={value}
+        onChangeText={setValue}
       />
     </Container>
   )

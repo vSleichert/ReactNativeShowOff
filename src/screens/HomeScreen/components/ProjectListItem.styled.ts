@@ -15,10 +15,16 @@ export const Container = styled.TouchableOpacity`
 
 export const Column = styled.View`
   flex-direction: column;
+  flex-basis: 25%;
+  justify-content: center;
 `
 
 export const Title = styled.Text`
   font-weight: bold;
   font-size: 16px;
+  text-align: center;
+`
+
+export const Item = styled.Text`
   text-align: center;
 `
