@@ -11,7 +11,7 @@ const HomeScreen = observer(() => {
   const [projects, setProjects] = useState<Project[] | null>(null)
   const [filter, setFilter] = useState<number>(0)
 
-  const getData = () => getProjectsList().then((res) => {
+  const getData = () => getProjectsList(filter === 0 ? undefined : filter).then((res) => {
     setProjects(res.data.content)
   }).catch((err) => {
     console.log('err', err)
@@ -19,7 +19,7 @@ const HomeScreen = observer(() => {
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [filter])
 
   return (
       <>
