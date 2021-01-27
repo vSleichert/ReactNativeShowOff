@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import DetailScreen from './screens/DetailScreen'
+import Header from './components/Header'
 
 const Stack = createStackNavigator();
 
@@ -13,16 +14,22 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Login"
+          name='Login'
           component={LoginScreen}
           options={{ title: 'Login' }}
         />
         <Stack.Screen
-          name="Home"
+          name='Home'
           component={HomeScreen}
-          options={{ title: 'Project List' }}
+          options={{ title: 'Project List',
+          headerLeft: () => ( <></> ),
+          headerRight: () => ( <Header /> ) }}
         />
-        <Stack.Screen name="Detail" component={DetailScreen} />
+        <Stack.Screen 
+          name='Detail'
+          component={DetailScreen}
+          options={{ title: 'Detail',
+          headerRight: () => ( <Header /> ) }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

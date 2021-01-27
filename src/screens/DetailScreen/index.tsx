@@ -3,7 +3,7 @@ import { ActivityIndicator, Text } from 'react-native'
 import { getProject, Project } from '../../axios/projects';
 import { Container, Item, Title } from './components/Detail.styled';
 
-const DetailScreen = ({route}) => {
+const DetailScreen = ({route}: {route: any}) => {
   const { uid } = route.params;
 
   const [project, setProject] = useState<Project | null>(null)
