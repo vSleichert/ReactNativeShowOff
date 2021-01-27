@@ -12,16 +12,19 @@ export interface Project {
   dateDue: Date
 }
 
-interface GetProjectListResponse {
+export interface GetProjectListResponse {
+  totalPages: number
   content: Project[]
 }
 
-export const getProjectsList = async (dueInHours?: number) => {
+export const getProjectsList = async (pageSize: number, pageNumber: number = 0, dueInHours?: number) => {
   const token = await AsyncStorage.getItem('token')
   
   return axios.get<GetProjectListResponse>(`${apiUrl}projects`, {
     params: {
-      dueInHours: dueInHours
+      dueInHours: dueInHours,
+      pageNumber,
+      pageSize
     },
     headers: {
       'Authorization': `ApiToken ${token}`

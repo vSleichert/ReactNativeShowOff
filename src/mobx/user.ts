@@ -11,6 +11,10 @@ class UserStore {
   setLoggedUser(username: string) {
     this.loggedUsername = username
   }
+
+  resetStore() {
+    this.loggedUsername = ''
+  }
 }
 
 export const UserStoreContext = createContext(new UserStore)

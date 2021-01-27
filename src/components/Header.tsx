@@ -1,14 +1,17 @@
 import AsyncStorage from '@react-native-community/async-storage'
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-native'
 import { logoutUser } from '../axios/login'
+import { UserStoreContext } from '../mobx/user'
 
 const Header = () => {
   const navigation = useNavigation()
+  const userStore = useContext(UserStoreContext)
 
   const logout = () => {
     logoutUser().then(() => {
+      userStore.resetStore()
       AsyncStorage.removeItem('token')
       navigation.navigate('Login')
     }).catch((err) => {

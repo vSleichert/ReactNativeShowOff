@@ -18,3 +18,8 @@ export const Item = styled.View`
   flex-direction: row;
   margin-bottom: 10px;
 `
+
+export const ErrorMessage = styled.Text`
+  text-align: center;
+  color: red;
+`

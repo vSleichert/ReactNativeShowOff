@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 import { ActivityIndicator, Alert, KeyboardAvoidingView } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import { loginUser } from '../../axios/login'
-import { Background, ButtonText, Container, ErrorMessage, LoginButton, LoginInput, Title } from './components/Login.styled'
+import { Background, ButtonText, Container, ErrorMessage, LoginButton, LoginInput, Title } from './index.styled'
 import { observer } from 'mobx-react'
 import { UserStoreContext } from '../../mobx/user'
 
