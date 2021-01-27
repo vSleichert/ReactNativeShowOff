@@ -23,6 +23,7 @@ exports.config = {
   {
     maxInstances: 1,
     browserName: '',
+    isMobile: true,
     appiumVersion : '1.20.1',
     deviceName : 'iPhone 11',
     platformVersion : '13.1',

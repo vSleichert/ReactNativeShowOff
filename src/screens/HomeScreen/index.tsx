@@ -31,7 +31,7 @@ const HomeScreen = observer(() => {
   }, [filter, pageNumber])
 
   return (
-      <SafeAreaView>
+      <SafeAreaView testID='homeScreen' accessibilityLabel='homeScreen'>
         <Filters value={filter} setValue={setFilter} />
         <InfoContainer>
           <Text>Logged as: {userStore.loggedUsername}</Text>

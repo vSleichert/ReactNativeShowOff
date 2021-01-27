@@ -1,13 +1,34 @@
-/* eslint-disable no-undef */
-var expect = require('chai').expect
+const expect = require('chai').expect
+const nock = require('nock')
 
-describe('User Searching', () => {
+const apiUrl = 'https://cloud.memsource.com/web/api2/v1'
+
+describe('App test', () => {
   before(() => {
     $('~app-root').waitForDisplayed(11000, false)
   })
 
+  beforeEach(() => {
+
+  })
+
   it('Should write username', () => {
-    $("~username").setValue('vojta')
+    const scope = nock(apiUrl)
+    .post('/auth/login', { username: 'JohnDoe', password: 'vojtaRulezForMemsource' })
+    .reply(200, {
+      token: 'someToken',
+      user: { username: "JohnDoe" },
+    })
+    
+    $("~username").setValue('JohnDoe')
+    $("~password").setValue('vojtaRulezForMemsource')
+
+    $("~loginButton").click()
+
+    $("~homeScreen").waitForDisplayed(11000)
+    const isVisible = $("~homeScreen").isDisplayed()
+
+    expect(isVisible).to.equal(true)
   })
 
   // it('Should find users', () => {
@@ -47,7 +68,7 @@ describe('User Searching', () => {
   // })
 
   // it('Should open instagram modal', () => {
-    
+
   // })
 
   // it('Should open report actionsheet', () => {
