@@ -10,14 +10,16 @@ const HomeScreen = observer(() => {
   const userStore = useContext(UserStoreContext)
   const [projects, setProjects] = useState<Project[] | null>(null)
   const [filter, setFilter] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const getData = () => getProjectsList(filter === 0 ? undefined : filter).then((res) => {
     setProjects(res.data.content)
   }).catch((err) => {
     console.log('err', err)
-  })
+  }).finally(() => setLoading(false))
 
   useEffect(() => {
+    setLoading(true)
     getData()
   }, [filter])
 
@@ -26,13 +28,14 @@ const HomeScreen = observer(() => {
         <Filters value={filter} setValue={setFilter} />
         <Text>Logged as: {userStore.loggedUsername}</Text>
         <Text>filter: {filter}</Text>
-        { projects ? <FlatList
-            data={projects}
-            numColumns={1}
-            renderItem={({ item: project }) => <ProjectListItem project={project} />}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={{ paddingHorizontal: 16 }}
-          /> : <ActivityIndicator animating={true} color='black'/> }
+        { loading ? <ActivityIndicator animating={true} color='black'/> :
+          <FlatList
+              data={projects}
+              numColumns={1}
+              renderItem={({ item: project }) => <ProjectListItem project={project} />}
+              keyExtractor={(item) => item.id}
+              contentContainerStyle={{ paddingHorizontal: 16 }}
+          /> }
       </>
   )
 })
