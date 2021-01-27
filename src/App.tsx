@@ -7,7 +7,7 @@ import LoginScreen from './screens/LoginScreen'
 import DetailScreen from './screens/DetailScreen'
 import Header from './components/Header'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 const App = () => {
   return (

@@ -1,32 +1,34 @@
 import { observer } from "mobx-react-lite"
 import React, { useContext, useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, Text } from 'react-native'
-import { getProjectsList, Project } from '../../axios/projects'
+import { ActivityIndicator, Button, FlatList, Text } from 'react-native'
+import { GetProjectListResponse, getProjectsList, Project } from '../../axios/projects'
 import { UserStoreContext } from '../../mobx/user'
 import ProjectListItem from './components/ProjectListItem'
 import Filters from "./components/Filters"
-import { ErrorMessage, InfoContainer } from "./components/Home.styled"
+import { ErrorMessage, Footer, InfoContainer, PageText } from "./index.styled"
 import { SafeAreaView } from "react-native-safe-area-context"
+
+const PAGE_SIZE = 10
 
 const HomeScreen = observer(() => {
   const userStore = useContext(UserStoreContext)
-  const [projects, setProjects] = useState<Project[] | null>(null)
+  const [projects, setProjects] = useState<GetProjectListResponse | null>(null)
   const [filter, setFilter] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  const [pageNumber, setPageNumber] = useState(1)
 
-  const getData = () => getProjectsList(filter === 0 ? undefined : filter).then((res) => {
+  const getData = (pageNumber: number) => getProjectsList(PAGE_SIZE, pageNumber, filter === 0 ? undefined : filter).then((res) => {
     setError(null)
-    setProjects(res.data.content)
+    setProjects(res.data)
   }).catch((err) => {
     setError(err.message)
-    console.log('err', err)
   }).finally(() => setLoading(false))
 
   useEffect(() => {
     setLoading(true)
-    getData()
-  }, [filter])
+    getData(pageNumber - 1)
+  }, [filter, pageNumber])
 
   return (
       <SafeAreaView>
@@ -38,12 +40,25 @@ const HomeScreen = observer(() => {
         { error && <ErrorMessage>There was an error while getting your data: {error}</ErrorMessage> }
         { loading ? <ActivityIndicator animating={true} color='black'/> :
           <FlatList
-              data={projects}
+              data={projects?.content}
               numColumns={1}
               renderItem={({ item: project }) => <ProjectListItem project={project} />}
               keyExtractor={(item) => item.id}
               contentContainerStyle={{ paddingHorizontal: 16 }}
           /> }
+          <Footer>
+            <Button 
+              title='previous'
+              disabled={pageNumber === 1}
+              onPress={() => setPageNumber(pageNumber - 1)}
+            />
+            <PageText>page number: {pageNumber} of {projects?.totalPages}</PageText>
+            <Button
+              title='next'
+              disabled={pageNumber === projects?.totalPages}
+              onPress={() => setPageNumber(pageNumber + 1)}
+            />
+          </Footer>
       </SafeAreaView>
   )
 })
