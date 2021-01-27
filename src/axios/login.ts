@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { apiUrl } from './apiUrl'
 
-export const loginUser = (userName: string, password: string) => axios.post(`https://cloud.memsource.com/web/api2/v1/auth/login`, {
+export const loginUser = (userName: string, password: string) => axios.post(`${apiUrl}auth/login`, {
   password,
   userName
 })
