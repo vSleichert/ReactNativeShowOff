@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native'
 import React, { useContext } from 'react'
 import { Button } from 'react-native'
 import { logoutUser } from '../axios/login'
-import { UserStoreContext } from '../mobx/user'
+import { UserStoreContext } from '../stores/user'
 
 const Header = () => {
   const navigation = useNavigation()
@@ -24,6 +24,8 @@ const Header = () => {
         onPress={logout}
         title="Logout"
         color="#e41616"
+        testID='logoutButton' 
+        accessibilityLabel='logoutButton'
       />
   )
 }

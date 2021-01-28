@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { loginUser } from '../../axios/login'
 import { Background, ButtonText, Container, ErrorMessage, LoginButton, LoginInput, Title } from './index.styled'
 import { observer } from 'mobx-react'
-import { UserStoreContext } from '../../mobx/user'
+import { UserStoreContext } from '../../stores/user'
 
 const LoginScreen = observer(() => {
   const navigation = useNavigation()
@@ -38,14 +38,14 @@ const LoginScreen = observer(() => {
   }
 
   return (
-    <Background>
+    <Background testID='loginScreen' accessibilityLabel='loginScreen'>
         <Container>
           <Title>MEMSOURCE</Title>
           <KeyboardAvoidingView>
-            <LoginInput value={username} onChangeText={setUsername} placeholder='username' />
-            <LoginInput value={password} onChangeText={setPassword} secureTextEntry={true} placeholder='password' />
-            { error && <ErrorMessage>{error}</ErrorMessage> }
-            <LoginButton onPress={login}>
+            <LoginInput value={username} onChangeText={setUsername} placeholder='username' testID='username' accessibilityLabel='username'/>
+            <LoginInput value={password} onChangeText={setPassword} secureTextEntry={true} placeholder='password' testID='password' accessibilityLabel='password' />
+            { error && <ErrorMessage testID='loginErrorMessage' accessibilityLabel='loginErrorMessage' >{error}</ErrorMessage> }
+            <LoginButton onPress={login} testID='loginButton' accessibilityLabel='loginButton'>
               {fetching ? <ActivityIndicator animating={true} color='white'/> :
                 <ButtonText>
                   Login

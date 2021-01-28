@@ -27,7 +27,7 @@ const DetailScreen = ({route}: {route: any}) => {
   }
 
   return (
-    <Container>
+    <Container testID='detailScreen' accessibilityLabel='detailScreen'>
       <Item>
         <Title>Name: </Title>
         <Text>{project.name}</Text>

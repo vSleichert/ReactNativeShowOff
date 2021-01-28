@@ -17,7 +17,7 @@ const ProjectListItem = ({ project }: { project: Project }) => {
   const navigation = useNavigation()
 
   return (
-    <Container onPress={() => navigation.navigate('Detail', { uid: project.uid })}>
+    <Container onPress={() => navigation.navigate('Detail', { uid: project.uid })} testID='projectItem' accessibilityLabel='projectItem'>
       <Column>
         <Title>Name</Title>
         <Item>{longTextCorrection(project.name)}</Item>
