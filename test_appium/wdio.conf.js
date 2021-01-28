@@ -30,7 +30,7 @@ exports.config = {
     platformName : 'iOS',
     autoWebview: false,
     automationName: 'XCUITest',
-    app: '/Users/vojta/Library/Developer/Xcode/DerivedData/reactNativeShowOff-ekevfdcbwjyjrparucjrklqaeltz/Build/Products/Debug-iphonesimulator/reactNativeShowOff.app',
+    // app: <path to app> // for example // '/Users/vojta/Library/Developer/Xcode/DerivedData/reactNativeShowOff-ekevfdcbwjyjrparucjrklqaeltz/Build/Products/Debug-iphonesimulator/reactNativeShowOff.app',
   }],
   logLevel: 'trace',
   bail: 0,
