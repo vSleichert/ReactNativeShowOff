@@ -17,4 +17,4 @@ class UserStore {
   }
 }
 
-export const UserStoreContext = createContext(new UserStore)
+export const UserStoreContext = createContext(new UserStore())

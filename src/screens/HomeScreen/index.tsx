@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite"
 import React, { useContext, useEffect, useState } from 'react'
 import { ActivityIndicator, Button, FlatList, Text } from 'react-native'
 import { GetProjectListResponse, getProjectsList, Project } from '../../axios/projects'
-import { UserStoreContext } from '../../mobx/user'
+import { UserStoreContext } from '../../stores/user'
 import ProjectListItem from './components/ProjectListItem'
 import Filters from "./components/Filters"
 import { ErrorMessage, Footer, InfoContainer, PageText } from "./index.styled"

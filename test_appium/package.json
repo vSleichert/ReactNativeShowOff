@@ -12,7 +12,6 @@
   "dependencies": {
     "@wdio/cli": "^6.10.11",
     "appium": "^1.20.0",
-    "axios": "^0.21.1",
     "chai": "^4.2.0",
     "webdriverio": "^6.10.11"
   },
@@ -22,7 +21,6 @@
     "@wdio/mocha-framework": "^6.10.11",
     "@wdio/spec-reporter": "^6.10.6",
     "@wdio/sync": "^6.10.11",
-    "axios-mock-adapter": "^1.19.0",
     "nock": "^13.0.6"
   }
 }
